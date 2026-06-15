@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vokzal.KG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body data-page="index">
+    <header class="header">
+      <div class="container header__inner">
+        <div class="brand">
+          <span class="brand__logo">V</span>
+          <span class="brand__name">Vokzal.KG</span>
+        </div>
+        <button class="icon-btn" id="favoritesFilterBtn" aria-label="Избранное" type="button">♡</button>
+      </div>
+    </header>
+
+    <main class="container page-main">
+      <section class="tabs">
+        <button id="taxiTabBtn" class="tab-btn tab-btn--active" type="button">Такси</button>
+        <button id="passengerTabBtn" class="tab-btn" type="button">Пассажиры</button>
+      </section>
+
+      <section class="actions">
+        <button id="openCreateModalBtn" class="btn btn--primary" type="button">Создать объявление</button>
+      </section>
+
+      <section id="homeSection">
+        <div id="adsGrid" class="card-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="myAdsSection" class="hidden">
+        <h2 class="section-title">Мои объявления</h2>
+        <div id="myAdsGrid" class="card-grid"></div>
+      </section>
+
+      <section id="profileSection" class="hidden">
+        <h2 class="section-title">Профиль</h2>
+        <form id="profileForm" class="panel form-grid">
+          <label class="field">
+            <span>Имя</span>
+            <input id="profileFirstName" name="firstName" required />
+          </label>
+          <label class="field">
+            <span>Фамилия</span>
+            <input id="profileLastName" name="lastName" required />
+          </label>
+          <label class="field">
+            <span>Аватар (URL)</span>
+            <input id="profileAvatar" name="avatarUrl" />
+          </label>
+          <label class="field">
+            <span>Номер телефона</span>
+            <input id="profilePhone" name="phone" required placeholder="996700123456" />
+          </label>
+          <button class="btn btn--primary" type="submit">Сохранить профиль</button>
+        </form>
+      </section>
+    </main>
+
+    <div id="createModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="createModalTitle">
+      <div class="modal__backdrop" data-close-modal="true"></div>
+      <div class="modal__card">
+        <div class="modal__header">
+          <h2 id="createModalTitle">Новое объявление</h2>
+          <button class="icon-btn" data-close-modal="true" type="button">✕</button>
+        </div>
+        <form id="createAdForm" class="form-grid">
+          <label class="field">
+            <span>Роль объявления</span>
+            <select id="adRole" name="role" required>
+              <option value="passenger">Пассажир</option>
+              <option value="driver_companion">Водитель-попутчик</option>
+              <option value="driver_taxi">Водитель-таксист</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Откуда</span>
+            <input name="from" required />
+          </label>
+          <label class="field">
+            <span>Куда</span>
+            <input name="to" required />
+          </label>
+          <label class="field">
+            <span>Дата</span>
+            <input name="date" type="date" required />
+          </label>
+          <label class="field">
+            <span>Время</span>
+            <input name="time" type="time" required />
+          </label>
+          <label class="field">
+            <span>Цена (сом)</span>
+            <input name="price" type="number" min="0" required />
+          </label>
+
+          <label class="field role-passenger-only">
+            <span>Сколько человек едет со мной</span>
+            <input name="peopleCount" type="number" min="1" value="1" />
+          </label>
+
+          <label class="field role-driver-only">
+            <span>Марка/модель авто</span>
+            <input name="carModel" />
+          </label>
+          <label class="field role-driver-only">
+            <span>Фото машины (URL)</span>
+            <input name="carPhotoUrl" />
+          </label>
+          <label class="field role-driver-only">
+            <span>Мест</span>
+            <input name="seatsLeft" type="number" min="0" value="4" />
+          </label>
+
+          <label class="field role-taxi-only">
+            <span>Стаж вождения (лет)</span>
+            <input name="experienceYears" type="number" min="0" value="5" />
+          </label>
+
+          <div class="modal__footer">
+            <button class="btn" data-close-modal="true" type="button">Отмена</button>
+            <button class="btn btn--primary" type="submit">Опубликовать</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <nav class="mobile-nav">
+      <button class="mobile-nav__btn mobile-nav__btn--active" data-section="home" type="button">Главная</button>
+      <button class="mobile-nav__btn" data-section="myAds" type="button">Мои объявления</button>
+      <button class="mobile-nav__btn" data-section="profile" type="button">Профиль</button>
+    </nav>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
+
